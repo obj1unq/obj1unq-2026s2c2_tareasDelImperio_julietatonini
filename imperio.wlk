@@ -3,15 +3,15 @@ import habitantes.*
 
 class Tarea{
 
-    method recursosProducidos(tiempo, cultivo){
-        return 50 * (tiempo - self.desgaste(tiempo)) * self.esfuerzo(cultivo)
+    method recursosProducidos(tiempo){
+        return 50 * (tiempo - self.desgaste(tiempo)) * self.esfuerzo()
     }
 
 
     method desgaste(tiempo)
 
 
-    method esfuerzo(cultivo)    
+    method esfuerzo()    
 
 
 }
@@ -22,7 +22,9 @@ class Tarea{
 
 class Siembra inherits Tarea{
 
-    override method esfuerzo(cultivo){
+    const property cultivo
+
+    override method esfuerzo(){
         return cultivo.esfuerzoDeCultivo()
     }
 
@@ -44,9 +46,9 @@ class Siembra inherits Tarea{
 
 
 
-class SiembraEnValle inherits Siembra{
+class SiembraEnValle inherits Siembra{   
 
-    var property esEpocaDeLluvias = false
+    var property esEpocaDeLluvias = false      // object epocaDeLluvias y object EpocaSeca 
 
 
     override method jornadaNormal(){
@@ -54,11 +56,11 @@ class SiembraEnValle inherits Siembra{
     }
 
 
-    override method recursosProducidos(tiempo, cultivo){
+    override method recursosProducidos(tiempo){
         if (esEpocaDeLluvias){
             return 0
         }
-        return super(tiempo, cultivo)
+        return super(tiempo)
     }
 
 }
@@ -75,8 +77,8 @@ class SiembraEnTerrazas inherits Siembra{
     }
 
 
-    override method recursosProducidos(tiempo, cultivo){
-        return super(tiempo, cultivo) * 3
+    override method recursosProducidos(tiempo){
+        return super(tiempo) * 3
     }
 }
 
@@ -91,7 +93,7 @@ class Mensaje inherits Tarea {
     }
 
 
-    override method esfuerzo(cultivo){
+    override method esfuerzo(){
         return 1.4
     }
 
@@ -103,7 +105,7 @@ class Mensaje inherits Tarea {
 
 class MensajeImperial inherits Mensaje {
 
-    override method esfuerzo(cultivo){
+    override method esfuerzo(){
         return 1.8
     }
 
@@ -116,3 +118,11 @@ class MensajeImperial inherits Mensaje {
         }
     }
 }
+
+
+
+class Cultivo {
+
+    const  property esfuerzoDeCultivo 
+
+}  

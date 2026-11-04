@@ -2,8 +2,42 @@ import imperio.*
 import habitantes.*
 
 describe "Imperio Inca" {
+
+  // Parte 1: Tareas
+
+  const papa = new Cultivo (esfuerzoDeCultivo  = 1.2)
+
+  const siembraDePapa = new SiembraEnValle (cultivo = papa)
+
+  const maiz = new Cultivo(esfuerzoDeCultivo = 1.5)
+
+  const siembraDeMaiz = new SiembraEnTerrazas(cultivo = maiz)
+
+  const rutaTamboCentral = new Mensaje()
+
+  const caminoDelSapaInca = new MensajeImperial()
+
  
   test "Tareas de siembra" {
+    
+    // siembra de papa en el valle
+    assert.equals(180, siembraDePapa.recursosProducidos(4))
+    assert.equals(420, siembraDePapa.recursosProducidos(10))
+
+
+    // siembra de maiz en terraza
+    assert.equals(900, siembraDeMaiz.recursosProducidos(5))
+    assert.equals(1125, siembraDeMaiz.recursosProducidos(7))
+
+
+    //  Ruta Tambo Central
+    assert.equals(210, rutaTamboCentral.recursosProducidos(4))
+    assert.equals(525, rutaTamboCentral.recursosProducidos(10))
+
+
+    // Camino del Sapa Inca
+    assert.equals(270, caminoDelSapaInca.recursosProducidos(4))
+    assert.equals(810, caminoDelSapaInca.recursosProducidos(10))
   }
 
 
